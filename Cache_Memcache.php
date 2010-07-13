@@ -44,7 +44,7 @@ class Cache_Memcache implements Cache
 		if ($key == null)
 		{
 			$namespaceId = $this->getNewNamespaceId ();
-			$namespaceKey = 'KF_' . PROJECT_ID . '_namespace_' . $namespace;
+			$namespaceKey = PROJECT_ID . '_namespace_' . $namespace;
 			unset($this->prefixCache[$namespaceKey]);
 			return $memcache->delete ($namespaceKey);
 		}
@@ -60,7 +60,7 @@ class Cache_Memcache implements Cache
 	{
 		$memcache = $this->getConnection ();
 		
-		$namespaceKey = 'KF_' . PROJECT_ID . '_namespace_' . $namespace;
+		$namespaceKey = PROJECT_ID . '_namespace_' . $namespace;
 		
 		if (isset($this->prefixCache[$namespaceKey]))
 		{
@@ -76,7 +76,7 @@ class Cache_Memcache implements Cache
 			$memcache->set ($namespaceKey, $namespaceId, MEMCACHE_COMPRESSED, 0);
 		}
 		
-		return $this->prefixCache[$namespaceKey] = 'KF_' . PROJECT_ID . '_' . $namespaceId;
+		return $this->prefixCache[$namespaceKey] = PROJECT_ID . '_' . $namespaceId;
 	}
 
 	private function getNewNamespaceId ()

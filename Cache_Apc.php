@@ -33,7 +33,7 @@ class Cache_Apc implements Cache
 	{
 		if ($key == null)
 		{
-			$namespaceKey = 'KF_' . PROJECT_ID . '_namespace_' . $namespace;
+			$namespaceKey = PROJECT_ID . '_namespace_' . $namespace;
 			$namespaceId = self::getNewNamespaceId ();
 			return apc_store ($namespaceKey, $namespaceId);
 		}
@@ -45,7 +45,7 @@ class Cache_Apc implements Cache
 
 	private static function prefix ($namespace)
 	{
-		$namespaceKey = 'KF_' . PROJECT_ID . '_namespace_' . $namespace;
+		$namespaceKey = PROJECT_ID . '_namespace_' . $namespace;
 		
 		$namespaceId = apc_fetch ($namespaceKey);
 		
@@ -55,7 +55,7 @@ class Cache_Apc implements Cache
 			apc_store ($namespaceKey, $namespaceId);
 		}
 		
-		return 'KF_' . PROJECT_ID . '_' . $namespaceId;
+		return PROJECT_ID . '_' . $namespaceId;
 	}
 
 	private static function getNewNamespaceId ()
